@@ -30,10 +30,10 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
 		    <li class="nav-item">
-          <a class="nav-link active" id="create_cards_link" aria-current="page" href="#" onclick="createQuestions()">Create Cards</a>
+          <a class="nav-link active" id="create_cards_link" aria-current="page" href="#" onclick="createQuestions()">Create Test</a>
         </li>
 		    <li class="nav-item">
-          <a class="nav-link active" id="load_cards_link" aria-current="page" href="load.html" onclick="loadQuestions()">Load Cards</a>
+          <a class="nav-link active" id="load_cards_link" aria-current="page" href="load.html" onclick="loadQuestions()">Load Test</a>
         </li>
       </ul>
     </div>
@@ -43,12 +43,12 @@
 <main class="container">
 	<div class="container" role="navigation">
 		<div class="row">
-			<p id = "title" class="text-success"><B>Create Card Deck</B></p>
-			<P>Click <B>➕Add card (row)</B> and when finished click <B>☁Save deck (cards)</B>.  Deck is saved in your browser's local storage with the "Deck Name", and will persist even after exiting the browser.</P>
-			<P>Deck Name: <input name="new_title" id="new_title" required size="40" value="New Example Deck"></P>
+			<H3><p id = "title" class="text-success"><B>Create Test</B></p></H3>
+			<P>Click <B>➕Add question</B> and when finished click <B>☁Save test</B>.  Test is saved in your browser's local storage with the "Test Name", and will persist even after exiting the browser.</P>
+			<P>Test Name: <input name="new_title" id="new_title" required size="40" value="New Example Test"></P>
 			<P>Optional Source URL: <input type="url" size="40" name="new_ref" id="new_ref" value="https://www.example.com"></P>
 			<div name="cards_json" id="cards_json"></div>
-			<P><button onclick="return addRow(); return false;" class="btn btn-primary btn-sm">➕Add card (row)</button>&nbsp;&nbsp;<button onclick="return saveCards(); return false;" class="btn btn-primary btn-sm">☁️Save deck (cards)</button>
+			<P><button onclick="return addRow(); return false;" class="btn btn-primary btn-sm">➕Add question</button>&nbsp;&nbsp;<button onclick="return saveCards(); return false;" class="btn btn-primary btn-sm">☁️Save test</button>
 		</div>
 	</div>
 </main>
@@ -101,7 +101,7 @@ function saveCards() {
   }
   deck_titles.push(window.deck.title);
   localStorage.setItem("deck_titles", JSON.stringify(deck_titles));
-  localStorage.setItem(window.deck.title, JSON.stringify(window.deck.test));
+  localStorage.setItem(window.deck.title, JSON.stringify(window.deck));
   //localStorage.setItem(window.deck.title, window.deck.test);
 }
 
