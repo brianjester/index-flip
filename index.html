@@ -32,7 +32,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">🇺🇸 DMV</a>
+          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">🇺🇸 DMV</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" class="nav-link active" id="calif_dmv_c_link" aria-current="page" href="#" onclick="loadCaDmvQuestions()" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">🇺🇸 Calif DMV</a>
             <li><a class="dropdown-item" class="nav-link active" id="ny_dmv_link" aria-current="page" href="#" onclick="loadNyDmvQuestions()" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">🇺🇸 NY DMV</a>
@@ -40,7 +40,7 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Amateur Radio</a>
+          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Amateur Radio</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" class="nav-link active" id="fcc_tech_link" aria-current="page" href="#" onclick="loadFccTechQuestions()" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">🇺🇸 FCC Tech</a>
             <li><a class="dropdown-item" class="nav-link active" id="ca_basic_link" aria-current="page" href="#" onclick="loadCaBasicQuestions()" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">🇨🇦 CDN Basic Amateur Radio</a>
@@ -49,7 +49,7 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">🇯🇵 Japanese</a>
+          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">🇯🇵 Japanese</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" class="nav-link active" id="jp_hira_link" aria-current="page" href="#" onclick="loadJpHiraQuestions()" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">🇯🇵 Hiragana</a>
             <li><a class="dropdown-item" class="nav-link active" id="jp_kata_link" aria-current="page" href="#" onclick="loadJpKataQuestions()" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">🇯🇵 Katakana</a>
@@ -178,8 +178,7 @@
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJGDGRJYDW"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7109249808946513"
-     crossorigin="anonymous"></script>
+
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -195,7 +194,6 @@
 var show_morse = false; // Show Morse Code dots and dashes (controlled by morse-text class
 
 // Default json page to load   
-//window.onload = loadWelcome();
 const url = new URL(window.location.href);
 const searchParams = url.searchParams;
 const test = searchParams.get('q'); // allows custom URL for particular card deck
@@ -252,14 +250,12 @@ async function fetchDeck(my_title, my_link, my_file) {
   gtag('event', 'page_view', {
     "page_title": my_title,
     });
-  resetNavLinks();
   document.getElementById(my_link).className = "nav-link active";
   window.json = await fetch('https://brianjester.github.io/index-flip/'+my_file).then(response => { return response.json() });
   postInit();
 }
 
 async function loadWelcome() {
-  resetNavLinks();
   window.json = await fetch('https://brianjester.github.io/index-flip/welcome.json').then(response => { return response.json() });
   postInit();
 }
@@ -331,13 +327,6 @@ function loadDeck() {
 		console.error(ex);
 	}
 	setupCard();
-}
-
-function resetNavLinks() {
-	let my_links = ["calif_dmv_c_link", "ny_dmv_link", "fcc_tech_link", "ca_basic_link", "jlpt_n5_k_link", "jlpt_n5_k2_link", "jlpt_n5_v_link", "jp_hira_link", "jp_kata_link", "music_link", "morse_link", "periodic_link", "braille_link"];
-	for (const my_link of my_links){
-		document.getElementById(my_link).className = "nav-link";
-	}
 }
 
 function postInit() {
