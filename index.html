@@ -50,6 +50,7 @@
 			  <ul class="dropdown-menu">
 				<li><a class="dropdown-item" class="nav-link active" id="asl_link" aria-current="page" href="#" onclick="loadAslQuestions()" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">🇺🇸 ASL</a>
 			    <li><a class="dropdown-item" class="nav-link active" id="braille_link" aria-current="page" href="#" onclick="loadBrailleQuestions()" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Braille</a>
+			    <li><a class="dropdown-item" class="nav-link active" id="baybayin_link" aria-current="page" href="#" onclick="loadBaybayinQuestions()" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">🇵🇭 Baybayin</a>
 				<li><a class="dropdown-item" class="nav-link active" id="jp_hira_link" aria-current="page" href="#" onclick="loadJpHiraQuestions()" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">🇯🇵 Hiragana</a>
 				<li><a class="dropdown-item" class="nav-link active" id="jp_kata_link" aria-current="page" href="#" onclick="loadJpKataQuestions()" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">🇯🇵 Katakana</a>
 				<li><a class="dropdown-item" class="nav-link active" id="jlpt_n5_k_link" aria-current="page" href="#" onclick="loadJlptN5KanjiQuestions()" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">🇯🇵 JLPT N5 Kanji/Eng</a>
@@ -175,7 +176,7 @@
 	const url = new URL(window.location.href);
 	const searchParams = url.searchParams;
 	const test = searchParams.get('q'); // allows custom URL for particular card deck
-	const tests = ['asl','calif_dmv','ny_dmv','fcc_tech','ca_basic','jp_radio','jp_hira','jp_kata','music','morse', 'periodic', 'n5k', 'n5k2', 'n5v', 'braille'];
+	const tests = ['asl','baybayin','calif_dmv','ny_dmv','fcc_tech','ca_basic','jp_radio','jp_hira','jp_kata','music','morse', 'periodic', 'n5k', 'n5k2', 'n5v', 'braille'];
 	if (tests.includes(test)) {
 		switch (test) {
 		  case 'calif_dmv':
@@ -183,6 +184,9 @@
 			break;
 		  case 'asl':
 			loadAslQuestions();
+			break;
+		  case 'baybayin':
+			loadBaybayinQuestions();
 			break;
 		  case 'ny_dmv':
 			loadNyDmvQuestions();
@@ -250,6 +254,10 @@
 
 	async function loadAslQuestions() {
 		fetchDeck("loadAslQuestions", "asl_link", "questions_asl.json");
+	}
+
+	async function loadBaybayinQuestions() {
+		fetchDeck("loadBaybayinQuestions", "baybayin_link", "questions_baybayin.json");
 	}
 
 	async function loadNyDmvQuestions() {
