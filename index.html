@@ -40,6 +40,7 @@
 			  <ul class="dropdown-menu">
 				<li><a class="dropdown-item" class="nav-link active" id="fcc_tech_link" aria-current="page" href="#" onclick="loadFccTechQuestions()" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">🇺🇸 FCC Tech</a>
 				<li><a class="dropdown-item" class="nav-link active" id="ca_basic_link" aria-current="page" href="#" onclick="loadCaBasicQuestions()" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">🇨🇦 CDN Basic Amateur Radio</a>
+				<li><a class="dropdown-item" class="nav-link active" id="jp_radio_link" aria-current="page" href="#" onclick="loadJpRadioQuestions()" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">🇯🇵 第二級アマチュア無線技士</a>
 				<li><a class="dropdown-item" class="nav-link active" id="morse_link" aria-current="page" href="#" onclick="loadMorseQuestions()" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Morse Code</a>
 			  </ul>
 			</li>
@@ -175,7 +176,7 @@
 	const url = new URL(window.location.href);
 	const searchParams = url.searchParams;
 	const test = searchParams.get('q'); // allows custom URL for particular card deck
-	const tests = ['calif_dmv','ny_dmv','fcc_tech','ca_basic','jp_hira','jp_kata','music','morse', 'periodic', 'n5k', 'n5k2', 'n5v', 'braille'];
+	const tests = ['calif_dmv','ny_dmv','fcc_tech','ca_basic','jp_radio','jp_hira','jp_kata','music','morse', 'periodic', 'n5k', 'n5k2', 'n5v', 'braille'];
 	if (tests.includes(test)) {
 		switch (test) {
 		  case 'calif_dmv':
@@ -189,6 +190,9 @@
 			break;
 		  case 'ca_basic':
 			loadCaBasicQuestions();
+			break;
+		  case 'jp_radio':
+			loadJpRadioQuestions();
 			break;
 		  case 'jp_hira':
 			loadJpHiraQuestions();
@@ -252,6 +256,10 @@
 
 	async function loadCaBasicQuestions() {
 		fetchDeck("loadCaBasicQuestions", "ca_basic_link", "questions_ca_basic.json");
+	}
+
+	async function loadJpRadioQuestions() {
+		fetchDeck("loadJpRadioQuestions", "jp_radio_link", "questions_jp_2.json2");
 	}
 
 	async function loadJpHiraQuestions() {
