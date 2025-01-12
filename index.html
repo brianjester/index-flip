@@ -375,16 +375,6 @@
 				console.info("no last streak date found so save today's date");
 			}
 
-			// if (streak_test) {
-			// 	// found streak in localStorage setting global var
-			// 	window.streak = streak_test;
-			// } else {
-			// 	// No streak found in localStorage, setting to 1
-			// 	window.streak = 1;
-			// 	// Saving current streak
-			// 	localStorage.setItem("streak", window.streak);
-			// }
-			// Update streak on page
 			document.getElementById("streak").innerHTML = "🔥"+window.streak;
 		} catch (ex) {
 			console.error(ex);
