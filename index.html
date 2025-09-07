@@ -163,7 +163,7 @@
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
 	  gtag('config', 'G-JJGDGRJYDW');
-	  <!-- PWA - Progressive Web App Service Worker -->
+	  // PWA - Progressive Web App Service Worker
 	  if ("serviceWorker" in navigator) {
 		// register service worker
 		navigator.serviceWorker.register("service-worker.js");
@@ -222,10 +222,10 @@
 		  case 'n5k':
 			loadJlptN5KanjiQuestions();
 			break;
-		  case 'n5k':
-			loadJlptN5VocabQuestions();
-			break;
 		  case 'n5k2':
+			loadJlptN5Kanji2Questions();
+			break;
+		  case 'n5v':
 			loadJlptN5VocabQuestions();
 			break;
 		  case 'braille':
@@ -341,7 +341,7 @@
 			last_streak_date = new Date(last_streak_date_string);
 
 			if (last_streak_date && streak_test) {
-				const days_between_streaks = todays_date.getDate() - last_streak_date.getDate();
+				const days_between_streaks = Math.floor((todays_date - last_streak_date) / (1000 * 60 * 60 * 24));
 				if (days_between_streaks == 1) {
 					// days between today and last streak day = 1, so increment
 					streak_test = (parseInt(streak_test) + 1);  // Math with untyped vars
@@ -405,7 +405,7 @@
 	function backOne() {
 	  const test = window.test;  // top level node is test
 	  window.order = "back-one";  // not actually used anywhere
-	  window.questionRowNum = (window.questionRowNum == 0) ? test.length - 1 : window.questionRowNum = window.questionRowNum -1;
+	  window.questionRowNum = (window.questionRowNum == 0) ? test.length - 1 : window.questionRowNum - 1;
 	  setupCard();
 	  window.order = "inOrder";
 	}
@@ -444,7 +444,7 @@
 	  } 
 
 	  questionRow = test[window.questionRowNum];
-	  if (questionRow.B == "" | !questionRow.hasOwnProperty("B")) {
+	  if (questionRow.B == "" || !questionRow.hasOwnProperty("B")) {
 		window.multipleChoice = false;
 	  }
 
